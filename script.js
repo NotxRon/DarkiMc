@@ -449,5 +449,6 @@ Interested in our code? We're always looking for talented developers!
 Join our Discord: Coming Soon
 Email us: NotWorkPlace@gmail.com
 
-Server IP: play.myserver.net
+Server IP: Soon!
 `);
+
