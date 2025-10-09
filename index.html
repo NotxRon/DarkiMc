@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyServer - Premium Minecraft Network</title>
+  <meta name="description" content="Join MyServer, the ultimate Minecraft experience with Survival, LifeSteal, and KitPvP gamemodes. Connect at play.myserver.net">
+  <meta name="keywords" content="MyServer, Minecraft Server, Survival, LifeSteal, KitPvP, Gaming, Multiplayer">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <img src="img/logo.png" alt="MyServer Logo" class="logo-img">
+        <span class="logo-text">MyServer</span>
+      </div>
+      
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item">
+          <a href="#home" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="#about" class="nav-link">About</a>
+        </li>
+        <li class="nav-item">
+          <a href="#games" class="nav-link">Games</a>
+        </li>
+        <li class="nav-item">
+          <a href="#staff" class="nav-link">Staff</a>
+        </li>
+        <li class="nav-item">
+          <a href="#contact" class="nav-link">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link nav-cta">Forums</a>
+        </li>
+      </ul>
+      
+      <div class="hamburger" id="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-background">
+      <div class="hero-overlay"></div>
+      <video autoplay muted loop class="hero-video">
+        <source src="img/minecraft-bg.mp4" type="video/mp4">
+      </video>
+    </div>
+    
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-crown"></i>
+        <span>Premium Minecraft Network</span>
+      </div>
+      
+      <h1 class="hero-title">
+        Welcome to <span class="gradient-text">MyServer</span>
+      </h1>
+      
+      <p class="hero-subtitle">
+        Experience the ultimate Minecraft adventure with custom gamemodes, 
+        dedicated staff, and an amazing community
+      </p>
+      
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-number" data-target="1247">0</div>
+          <div class="stat-label">Players Online</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-target="3">0</div>
+          <div class="stat-label">Game Modes</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-target="99">0</div>
+          <div class="stat-label">Uptime %</div>
+        </div>
+      </div>
+      
+      <div class="hero-actions">
+        <div class="server-ip">
+          <span class="ip-label">Server IP:</span>
+          <code class="ip-address" id="server-ip">play.myserver.net</code>
+          <button class="copy-btn" id="copy-ip">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+        
+        <div class="hero-buttons">
+          <a href="#games" class="btn btn-primary">
+            <i class="fas fa-gamepad"></i>
+            Explore Games
+          </a>
+          <a href="#" class="btn btn-secondary">
+            <i class="fab fa-discord"></i>
+            Join Discord
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scroll-indicator">
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Why Choose MyServer?</h2>
+        <p class="section-subtitle">Discover what makes us the premier Minecraft destination</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-icon">
+            <i class="fas fa-history"></i>
+          </div>
+          <h3 class="feature-title">Rich History</h3>
+          <p class="feature-description">
+            Over 2 years of continuous operation, evolving from a small community 
+            server into a thriving network with thousands of players.
+          </p>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 class="feature-title">Dedicated Staff</h3>
+          <p class="feature-description">
+            Our friendly and experienced staff team is available 24/7 to ensure 
+            smooth gameplay and assist with any questions or issues.
+          </p>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-icon">
+            <i class="fas fa-server"></i>
+          </div>
+          <h3 class="feature-title">Premium Infrastructure</h3>
+          <p class="feature-description">
+            High-performance servers with 99.9% uptime, custom plugins, 
+            and optimized gameplay for the best possible experience.
+          </p>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="feature-title">Anti-Cheat Protection</h3>
+          <p class="feature-description">
+            Advanced anti-cheat systems ensure fair play for all players, 
+            maintaining the integrity of our gaming environment.
+          </p>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="feature-icon">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <h3 class="feature-title">Competitive Events</h3>
+          <p class="feature-description">
+            Regular tournaments, events, and competitions with amazing prizes 
+            to keep the community engaged and excited.
+          </p>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="feature-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h3 class="feature-title">Amazing Community</h3>
+          <p class="feature-description">
+            Join thousands of friendly players from around the world in our 
+            welcoming and inclusive gaming community.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Games Section -->
+  <section class="games" id="games">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Game Modes</h2>
+        <p class="section-subtitle">Choose your adventure from our exciting game modes</p>
+      </div>
+      
+      <div class="games-grid">
+        <div class="game-card" data-aos="fade-right">
+          <div class="game-image">
+            <img src="img/survival.jpg" alt="Survival Mode" loading="lazy">
+            <div class="game-overlay">
+              <div class="game-status online">
+                <i class="fas fa-circle"></i>
+                <span>Online</span>
+              </div>
+              <div class="player-count">
+                <i class="fas fa-users"></i>
+                <span>847 Players</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="game-content">
+            <div class="game-header">
+              <h3 class="game-title">Survival</h3>
+              <div class="game-difficulty easy">Easy</div>
+            </div>
+            
+            <p class="game-description">
+              Experience classic Minecraft survival with custom features, player shops, 
+              land claiming, and an active economy. Build, explore, and thrive with friends!
+            </p>
+            
+            <div class="game-features">
+              <span class="feature-tag">Land Claims</span>
+              <span class="feature-tag">Player Shops</span>
+              <span class="feature-tag">Custom Enchants</span>
+              <span class="feature-tag">Economy</span>
+            </div>
+            
+            <a href="#" class="game-btn">
+              <i class="fas fa-play"></i>
+              Join Now
+            </a>
+          </div>
+        </div>
+        
+        <div class="game-card" data-aos="fade-up">
+          <div class="game-image">
+            <img src="img/lifesteal.jpg" alt="LifeSteal Mode" loading="lazy">
+            <div class="game-overlay">
+              <div class="game-status online">
+                <i class="fas fa-circle"></i>
+                <span>Online</span>
+              </div>
+              <div class="player-count">
+                <i class="fas fa-users"></i>
+                <span>312 Players</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="game-content">
+            <div class="game-header">
+              <h3 class="game-title">LifeSteal</h3>
+              <div class="game-difficulty hard">Hard</div>
+            </div>
+            
+            <p class="game-description">
+              Intense PvP where every heart matters! Steal hearts from defeated players, 
+              build powerful bases, and dominate the battlefield with custom enchantments.
+            </p>
+            
+            <div class="game-features">
+              <span class="feature-tag">Heart Stealing</span>
+              <span class="feature-tag">Custom Enchants</span>
+              <span class="feature-tag">Base Building</span>
+              <span class="feature-tag">PvP Combat</span>
+            </div>
+            
+            <a href="#" class="game-btn">
+              <i class="fas fa-play"></i>
+              Join Now
+            </a>
+          </div>
+        </div>
+        
+        <div class="game-card" data-aos="fade-left">
+          <div class="game-image">
+            <img src="img/kitpvp.png" alt="KitPvP Mode" loading="lazy">
+            <div class="game-overlay">
+              <div class="game-status online">
+                <i class="fas fa-circle"></i>
+                <span>Online</span>
+              </div>
+              <div class="player-count">
+                <i class="fas fa-users"></i>
+                <span>156 Players</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="game-content">
+            <div class="game-header">
+              <h3 class="game-title">KitPvP</h3>
+              <div class="game-difficulty medium">Medium</div>
+            </div>
+            
+            <p class="game-description">
+              Fast-paced combat with unique kits! Choose your playstyle, climb the leaderboards, 
+              and explore secret parkour areas in our custom-built arena.
+            </p>
+            
+            <div class="game-features">
+              <span class="feature-tag">Multiple Kits</span>
+              <span class="feature-tag">Leaderboards</span>
+              <span class="feature-tag">Custom Map</span>
+              <span class="feature-tag">Parkour</span>
+            </div>
+            
+            <a href="#" class="game-btn">
+              <i class="fas fa-play"></i>
+              Join Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Staff Section -->
+  <section class="staff" id="staff">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Meet Our Team</h2>
+        <p class="section-subtitle">The dedicated individuals who make MyServer possible</p>
+      </div>
+      
+      <div class="staff-grid">
+        <div class="staff-card owner" data-aos="zoom-in" data-aos-delay="100">
+          <div class="staff-avatar">
+            <img src="img/itsronie.png" alt="itsRonie" loading="lazy">
+            <div class="staff-status online"></div>
+          </div>
+          
+          <div class="staff-info">
+            <h3 class="staff-name">itsRonie</h3>
+            <div class="staff-role owner-role">
+              <i class="fas fa-crown"></i>
+              Owner
+            </div>
+            <p class="staff-description">
+              Founder and visionary behind MyServer. Passionate about creating 
+              the best Minecraft experience for our community.
+            </p>
+            
+            <div class="staff-social">
+              <a href="#" class="social-link">
+                <i class="fab fa-discord"></i>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="staff-card co-owner" data-aos="zoom-in" data-aos-delay="200">
+          <div class="staff-avatar">
+            <img src="img/skin2.png" alt="Ashish" loading="lazy">
+            <div class="staff-status online"></div>
+          </div>
+          
+          <div class="staff-info">
+            <h3 class="staff-name">Ashish</h3>
+            <div class="staff-role co-owner-role">
+              <i class="fas fa-star"></i>
+              Co-Owner
+            </div>
+            <p class="staff-description">
+              Strategic leader focused on server development and community growth. 
+              Always working on new features and improvements.
+            </p>
+            
+            <div class="staff-social">
+              <a href="#" class="social-link">
+                <i class="fab fa-discord"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="staff-card admin" data-aos="zoom-in" data-aos-delay="300">
+          <div class="staff-avatar">
+            <img src="img/notbadking.png" alt="NotBadKing" loading="lazy">
+            <div class="staff-status away"></div>
+          </div>
+          
+          <div class="staff-info">
+            <h3 class="staff-name">NotBadKing</h3>
+            <div class="staff-role admin-role">
+              <i class="fas fa-shield-alt"></i>
+              Administrator
+            </div>
+            <p class="staff-description">
+              Experienced administrator ensuring fair play and maintaining 
+              server stability. Expert in conflict resolution.
+            </p>
+            
+            <div class="staff-social">
+              <a href="#" class="social-link">
+                <i class="fab fa-discord"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="staff-card manager" data-aos="zoom-in" data-aos-delay="400">
+          <div class="staff-avatar">
+            <img src="img/skin1.png" alt="itsAyush" loading="lazy">
+            <div class="staff-status online"></div>
+          </div>
+          
+          <div class="staff-info">
+            <h3 class="staff-name">itsAyush</h3>
+            <div class="staff-role manager-role">
+              <i class="fas fa-cog"></i>
+              Manager
+            </div>
+            <p class="staff-description">
+              Community manager dedicated to player support and organizing 
+              events. Always ready to help new players get started.
+            </p>
+            
+            <div class="staff-social">
+              <a href="#" class="social-link">
+                <i class="fab fa-discord"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- News Section -->
+  <section class="news">
+    <div class="news-background">
+      <div class="news-overlay"></div>
+    </div>
+    
+    <div class="container">
+      <div class="news-content">
+        <div class="news-badge">
+          <i class="fas fa-newspaper"></i>
+          <span>Latest News</span>
+        </div>
+        
+        <h2 class="news-title">Server Launch Success!</h2>
+        
+        <p class="news-description">
+          We're thrilled to announce that MyServer has officially launched with incredible success! 
+          We've welcomed over 1,000 players in our first week, breaking all our initial expectations. 
+          With new maps, expanded staff team, and enhanced plugins, we're ready to provide the ultimate 
+          Minecraft experience.
+        </p>
+        
+        <div class="news-stats">
+          <div class="news-stat">
+            <div class="stat-number">1,247</div>
+            <div class="stat-label">Peak Players</div>
+          </div>
+          <div class="news-stat">
+            <div class="stat-number">15</div>
+            <div class="stat-label">New Features</div>
+          </div>
+          <div class="news-stat">
+            <div class="stat-number">3</div>
+            <div class="stat-label">New Maps</div>
+          </div>
+        </div>
+        
+        <a href="#" class="btn btn-primary">
+          <i class="fas fa-arrow-right"></i>
+          Read Full Article
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Have questions? We're here to help!</p>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item" data-aos="fade-right" data-aos-delay="100">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Email Support</h3>
+              <p>Get help with technical issues or general inquiries</p>
+              <a href="mailto:NotWorkPlace@gmail.com" class="contact-link">
+                NotWorkPlace@gmail.com
+              </a>
+            </div>
+          </div>
+          
+          <div class="contact-item" data-aos="fade-right" data-aos-delay="200">
+            <div class="contact-icon">
+              <i class="fab fa-discord"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Discord Community</h3>
+              <p>Join our active community for real-time support</p>
+              <a href="#" class="contact-link">
+                Coming Soon
+              </a>
+            </div>
+          </div>
+          
+          <div class="contact-item" data-aos="fade-right" data-aos-delay="300">
+            <div class="contact-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Forums</h3>
+              <p>Browse discussions and connect with other players</p>
+              <a href="#" class="contact-link">
+                Visit Forums
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form-container" data-aos="fade-left">
+          <form class="contact-form" id="contact-form">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject" required>
+                <option value="">Select a topic</option>
+                <option value="support">Technical Support</option>
+                <option value="report">Report a Player</option>
+                <option value="suggestion">Suggestion</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-paper-plane"></i>
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-logo">
+            <img src="img/logo.png" alt="MyServer Logo">
+            <span>MyServer</span>
+          </div>
+          <p class="footer-description">
+            The ultimate Minecraft server experience with custom gamemodes, 
+            dedicated staff, and an amazing community.
+          </p>
+          
+          <div class="social-links">
+            <a href="#" class="social-link">
+              <i class="fab fa-discord"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-section">
+          <h3 class="footer-title">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#games">Games</a></li>
+            <li><a href="#staff">Staff</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3 class="footer-title">Game Modes</h3>
+          <ul class="footer-links">
+            <li><a href="#">Survival</a></li>
+            <li><a href="#">LifeSteal</a></li>
+            <li><a href="#">KitPvP</a></li>
+            <li><a href="#">Coming Soon</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3 class="footer-title">Server Info</h3>
+          <div class="server-info">
+            <div class="server-ip-footer">
+              <span>Server IP:</span>
+              <code>play.myserver.net</code>
+            </div>
+            <div class="server-version">
+              <span>Version:</span>
+              <code>1.20.x</code>
+            </div>
+            <div class="server-status">
+              <span class="status-indicator online"></span>
+              <span>Online</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          <p>&copy; 2024 MyServer. All rights reserved.</p>
+        </div>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Rules</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
