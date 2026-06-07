@@ -637,17 +637,17 @@
       window.addEventListener('resize', resize);
     })();
 
-    /* -------------------------------------------------------
+    /* 
        NAVBAR — scroll shrink
-       ------------------------------------------------------- */
+       */
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 60);
     });
 
-    /* -------------------------------------------------------
+    /* 
        HAMBURGER
-       ------------------------------------------------------- */
+       */
     const hamburger = document.getElementById('hamburger');
     const navMenu   = document.getElementById('nav-menu');
     hamburger.addEventListener('click', () => {
@@ -661,9 +661,9 @@
       });
     });
 
-    /* -------------------------------------------------------
+    /*
        COUNTER ANIMATION
-       ------------------------------------------------------- */
+        */
     function animateCounters() {
       document.querySelectorAll('.stat-number[data-target]').forEach(el => {
         const target = +el.getAttribute('data-target');
@@ -682,9 +682,9 @@
     }, { threshold: 0.4 });
     heroObserver.observe(document.querySelector('.hero-stats'));
 
-    /* -------------------------------------------------------
+    /* 
        COPY IP
-       ------------------------------------------------------- */
+    */
     document.getElementById('copy-ip')?.addEventListener('click', () => {
       const ip = document.getElementById('server-ip').textContent;
       navigator.clipboard.writeText(ip).then(() => {
@@ -694,16 +694,16 @@
       });
     });
 
-    /* -------------------------------------------------------
+    /*
        BACK TO TOP
-       ------------------------------------------------------- */
+     */
     const btt = document.getElementById('back-to-top');
     window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 400));
     btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    /* -------------------------------------------------------
+    /*
        AOS INIT
-       ------------------------------------------------------- */
+      */
     AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 80 });
   </script>
 </body>
