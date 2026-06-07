@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FableMC - Dev Dashboard</title>
+    <style>
+        body {
+            background-color: #0d0d12;
+            color: #d1d1e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 250px;
+            background: #16161e;
+            padding: 20px;
+            border-right: 1px solid #2a2a35;
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            color: #ffaa00;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #2a2a35;
+            padding-bottom: 10px;
+        }
+
+        .nav-links a {
+            display: block;
+            color: #d1d1e0;
+            text-decoration: none;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            background: #1e1e28;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: #ffaa00;
+            color: #000;
+            transform: translateX(5px);
+        }
+
+        /* Main Tracker Area */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        h1 { color: #fff; }
+
+        .tracker-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: #16161e;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .tracker-table th, .tracker-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #2a2a35;
+        }
+
+        .tracker-table th {
+            background: #1e1e28;
+            color: #ffaa00;
+        }
+
+        /* Tracker Buttons */
+        .btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 5px;
+            transition: 0.2s;
+        }
+
+        .btn-pending { background: #333344; color: #ffaa00; }
+        .btn-done { background: #333344; color: #55ff55; }
+        .btn-cross { background: #333344; color: #ff5555; }
+
+        .btn.active-pending { background: #ffaa00; color: #000; }
+        .btn.active-done { background: #55ff55; color: #000; }
+        .btn.active-cross { background: #ff5555; color: #fff; }
+
+        .status-text { font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>🛠️ FableMC Menu</h2>
+        <div class="nav-links">
+            <a href="home.html">🏠 Home</a>
+            <a href="classes.html">⚔️ Classes</a>
+            <a href="kingdoms.html">👑 Kingdoms</a>
+            <a href="dungeons.html">🏛️ Dungeons</a>
+            <a href="events.html">🎄 Regions & Events</a>
+            <a href="bosses.html">🐉 Bosses</a>
+            <a href="economy.html">💰 Economy</a>
+            <a href="quests.html">📜 Quests</a>
+            <a href="store.html">🛒 Store</a>
+            <a href="rules.html">⚖️ Rules</a>
+            <a href="events.html"> 🌃 events </a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h1>Dev Progress Tracker</h1>
+        <p>Yahan apne pages ka status track karo. Data local browser me save rahega.</p>
+
+        <table class="tracker-table">
+            <thead>
+                <tr>
+                    <th>Section / Page</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tracker-body">
+                </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Pages List
+        const pages = [
+            { id: 'home', name: '🏠 Home (home.html)' },
+            { id: 'classes', name: '⚔️ Classes (classes.html)' },
+            { id: 'kingdoms', name: '👑 Kingdoms (kingdoms.html)' },
+            { id: 'dungeons', name: '🏛️ Dungeons (dungeons.html)' },
+            { id: 'events', name: '🎄 Regions & Events (events.html)' },
+            { id: 'bosses', name: '🐉 Bosses (bosses.html)' },
+            { id: 'economy', name: '💰 Economy (economy.html)' },
+            { id: 'quests', name: '📜 Quests (quests.html)' },
+            { id: 'store', name: '🛒 Store (store.html)' },
+            { id: 'rules', name: '⚖️ Rules (rules.html)' }
+        ];
+
+        const tbody = document.getElementById('tracker-body');
+
+        // Load tracker UI
+        function renderTracker() {
+            tbody.innerHTML = '';
+            pages.forEach(page => {
+                // Get saved status or default to pending
+                const status = localStorage.getItem(`fablemc_${page.id}`) || 'pending';
+                
+                let statusIcon = status === 'done' ? '✅ Done' : status === 'cross' ? '❌ Dropped' : '⏳ Pending';
+                let statusColor = status === 'done' ? '#55ff55' : status === 'cross' ? '#ff5555' : '#ffaa00';
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${page.name}</td>
+                    <td class="status-text" style="color: ${statusColor}">${statusIcon}</td>
+                    <td>
+                        <button class="btn btn-pending ${status === 'pending' ? 'active-pending' : ''}" onclick="setStatus('${page.id}', 'pending')">⏳</button>
+                        <button class="btn btn-done ${status === 'done' ? 'active-done' : ''}" onclick="setStatus('${page.id}', 'done')">✅</button>
+                        <button class="btn btn-cross ${status === 'cross' ? 'active-cross' : ''}" onclick="setStatus('${page.id}', 'cross')">❌</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Save status to LocalStorage and update UI
+        function setStatus(id, status) {
+            localStorage.setItem(`fablemc_${id}`, status);
+            renderTracker();
+        }
+
+        // Initial Load
+        renderTracker();
+    </script>
+
+</body>
+</html>
