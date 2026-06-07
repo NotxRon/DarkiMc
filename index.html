@@ -4,47 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FableMc</title>
-  <meta name="description" content="Join MyServer, the ultimate Minecraft experience with Survival, LifeSteal, and KitPvP gamemodes. Connect at play.myserver.net">
-  <meta name="keywords" content="MyServer, Minecraft Server, Survival, LifeSteal, KitPvP, Gaming, Multiplayer">
-  
+  <meta name="description" content="Join FableMc, the ultimate Minecraft experience with Survival, LifeSteal, and KitPvP gamemodes.">
+  <meta name="keywords" content="FableMc, Minecraft Server, Survival, LifeSteal, KitPvP, Gaming, Multiplayer">
+
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <!-- Particle canvas + overlays -->
+  <canvas id="particleCanvas"></canvas>
+  <div class="vignette"></div>
+  <div class="scanlines"></div>
+
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <div class="nav-logo">
-        <img src="img/logo.png" alt="MyServer Logo" class="logo-img">
-        <span class="logo-text">DarkieMc</span>
+        <img src="img/logo.png" alt="FableMc Logo" class="logo-img">
+        <span class="logo-text">FableMc</span>
       </div>
-      
+
       <ul class="nav-menu" id="nav-menu">
-        <li class="nav-item">
-          <a href="#home" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item">
-          <a href="#about" class="nav-link">About</a>
-        </li>
-        <li class="nav-item">
-          <a href="#games" class="nav-link">Games</a>
-        </li>
-        <li class="nav-item">
-          <a href="#staff" class="nav-link">Staff</a>
-        </li>
-        <li class="nav-item">
-          <a href="#contact" class="nav-link">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link nav-cta">Forums</a>
-        </li>
+        <li class="nav-item"><a href="#home"    class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="#about"   class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#games"   class="nav-link">Games</a></li>
+        <li class="nav-item"><a href="#staff"   class="nav-link">Staff</a></li>
+        <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        <li class="nav-item"><a href="#"        class="nav-link nav-cta">Forums</a></li>
       </ul>
-      
+
       <div class="hamburger" id="hamburger">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -61,22 +58,22 @@
         <source src="img/minecraft-bg.mp4" type="video/mp4">
       </video>
     </div>
-    
+
     <div class="hero-content">
       <div class="hero-badge">
         <i class="fas fa-crown"></i>
         <span>Cracked Minecraft Network</span>
       </div>
-      
+
       <h1 class="hero-title">
-        Welcome to <span class="gradient-text">DarkieMc</span>
+        Welcome to <span class="gradient-text">FableMc</span>
       </h1>
-      
+
       <p class="hero-subtitle">
-        Experience the ultimate Minecraft adventure with custom gamemodes, 
+        Experience the ultimate Minecraft adventure with custom gamemodes,
         dedicated staff, and an amazing community
       </p>
-      
+
       <div class="hero-stats">
         <div class="stat">
           <div class="stat-number" data-target="0">0</div>
@@ -91,7 +88,7 @@
           <div class="stat-label">Uptime %</div>
         </div>
       </div>
-      
+
       <div class="hero-actions">
         <div class="server-ip">
           <span class="ip-label">Server IP:</span>
@@ -100,7 +97,7 @@
             <i class="fas fa-copy"></i>
           </button>
         </div>
-        
+
         <div class="hero-buttons">
           <a href="#games" class="btn btn-primary">
             <i class="fas fa-gamepad"></i>
@@ -113,7 +110,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="scroll-indicator">
       <div class="scroll-arrow"></div>
     </div>
@@ -123,73 +120,57 @@
   <section class="about" id="about">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Why Choose DarkieMc?</h2>
+        <h2 class="section-title">Why Choose FableMc?</h2>
+        <div class="deco-rule"></div>
         <p class="section-subtitle">Discover what makes us the premier Minecraft destination</p>
       </div>
-      
+
       <div class="features-grid">
         <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="feature-icon">
-            <i class="fas fa-history"></i>
-          </div>
+          <div class="feature-icon"><i class="fas fa-history"></i></div>
           <h3 class="feature-title">Rich History</h3>
           <p class="feature-description">
-            Over 2 years of continuous operation, evolving from a small community 
+            Over 2 years of continuous operation, evolving from a small community
             server into a thriving network with thousands of players.
           </p>
         </div>
-        
         <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="feature-icon">
-            <i class="fas fa-users"></i>
-          </div>
+          <div class="feature-icon"><i class="fas fa-users"></i></div>
           <h3 class="feature-title">Dedicated Staff</h3>
           <p class="feature-description">
-            Our friendly and experienced staff team is available 12h to ensure 
+            Our friendly and experienced staff team is available 12h to ensure
             smooth gameplay and assist with any questions or issues.
           </p>
         </div>
-        
         <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="feature-icon">
-            <i class="fas fa-server"></i>
-          </div>
+          <div class="feature-icon"><i class="fas fa-server"></i></div>
           <h3 class="feature-title">Premium Infrastructure</h3>
           <p class="feature-description">
-            High-performance servers with 20.9% uptime, custom plugins, 
-            and optimized gameplay for the best possible experience.
+            High-performance servers with custom plugins and optimized gameplay
+            for the best possible experience.
           </p>
         </div>
-        
         <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
-          <div class="feature-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
+          <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
           <h3 class="feature-title">Anti-Cheat Protection</h3>
           <p class="feature-description">
-            Advanced anti-cheat systems ensure fair play for all players, 
+            Advanced anti-cheat systems ensure fair play for all players,
             maintaining the integrity of our gaming environment.
           </p>
         </div>
-        
         <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
-          <div class="feature-icon">
-            <i class="fas fa-trophy"></i>
-          </div>
+          <div class="feature-icon"><i class="fas fa-trophy"></i></div>
           <h3 class="feature-title">Competitive Events</h3>
           <p class="feature-description">
-            Regular tournaments, events, and competitions with amazing prizes 
+            Regular tournaments, events, and competitions with amazing prizes
             to keep the community engaged and excited.
           </p>
         </div>
-        
         <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
-          <div class="feature-icon">
-            <i class="fas fa-heart"></i>
-          </div>
+          <div class="feature-icon"><i class="fas fa-heart"></i></div>
           <h3 class="feature-title">Amazing Community</h3>
           <p class="feature-description">
-            Join Hundreds of friendly players from around the world in our 
+            Join hundreds of friendly players from around the world in our
             welcoming and inclusive gaming community.
           </p>
         </div>
@@ -202,9 +183,10 @@
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">Game Modes</h2>
+        <div class="deco-rule"></div>
         <p class="section-subtitle">Choose your adventure from our exciting game modes</p>
       </div>
-      
+
       <div class="games-grid">
         <div class="game-card" data-aos="fade-right">
           <div class="game-image">
@@ -220,32 +202,25 @@
               </div>
             </div>
           </div>
-          
           <div class="game-content">
             <div class="game-header">
               <h3 class="game-title">Survival</h3>
               <div class="game-difficulty easy">Easy</div>
             </div>
-            
             <p class="game-description">
-              Experience classic Minecraft survival with custom features, player shops, 
+              Experience classic Minecraft survival with custom features, player shops,
               land claiming, and an active economy. Build, explore, and thrive with friends!
             </p>
-            
             <div class="game-features">
               <span class="feature-tag">Land Claims</span>
               <span class="feature-tag">Player Shops</span>
               <span class="feature-tag">Custom Enchants</span>
               <span class="feature-tag">Economy</span>
             </div>
-            
-            <a href="#" class="game-btn">
-              <i class="fas fa-play"></i>
-              Join Now
-            </a>
+            <a href="#" class="game-btn"><i class="fas fa-play"></i> Join Now</a>
           </div>
         </div>
-        
+
         <div class="game-card" data-aos="fade-up">
           <div class="game-image">
             <img src="img/lifesteal.jpg" alt="LifeSteal Mode" loading="lazy">
@@ -260,32 +235,25 @@
               </div>
             </div>
           </div>
-          
           <div class="game-content">
             <div class="game-header">
               <h3 class="game-title">LifeSteal</h3>
               <div class="game-difficulty hard">Hard</div>
             </div>
-            
             <p class="game-description">
-              Intense PvP where every heart matters! Steal hearts from defeated players, 
+              Intense PvP where every heart matters! Steal hearts from defeated players,
               build powerful bases, and dominate the battlefield with custom enchantments.
             </p>
-            
             <div class="game-features">
               <span class="feature-tag">Heart Stealing</span>
               <span class="feature-tag">Custom Enchants</span>
               <span class="feature-tag">Base Building</span>
               <span class="feature-tag">PvP Combat</span>
             </div>
-            
-            <a href="#" class="game-btn">
-              <i class="fas fa-play"></i>
-              Join Now
-            </a>
+            <a href="#" class="game-btn"><i class="fas fa-play"></i> Join Now</a>
           </div>
         </div>
-        
+
         <div class="game-card" data-aos="fade-left">
           <div class="game-image">
             <img src="img/kitpvp.png" alt="KitPvP Mode" loading="lazy">
@@ -300,29 +268,22 @@
               </div>
             </div>
           </div>
-          
           <div class="game-content">
             <div class="game-header">
               <h3 class="game-title">FFA-PvP</h3>
               <div class="game-difficulty medium">Medium</div>
             </div>
-            
             <p class="game-description">
-              Fast-paced combat with unique kits! Choose your playstyle, climb the leaderboards, 
+              Fast-paced combat with unique kits! Choose your playstyle, climb the leaderboards,
               and explore secret parkour areas in our custom-built arena.
             </p>
-            
             <div class="game-features">
               <span class="feature-tag">Multiple Kits</span>
               <span class="feature-tag">Leaderboards</span>
               <span class="feature-tag">Custom Map</span>
               <span class="feature-tag">Parkour</span>
             </div>
-            
-            <a href="#" class="game-btn">
-              <i class="fas fa-play"></i>
-              Join Now
-            </a>
+            <a href="#" class="game-btn"><i class="fas fa-play"></i> Join Now</a>
           </div>
         </div>
       </div>
@@ -334,109 +295,80 @@
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">Meet Our Team</h2>
-        <p class="section-subtitle">The dedicated individuals who make MyServer possible</p>
+        <div class="deco-rule"></div>
+        <p class="section-subtitle">The dedicated individuals who make FableMc possible</p>
       </div>
-      
+
       <div class="staff-grid">
         <div class="staff-card owner" data-aos="zoom-in" data-aos-delay="100">
           <div class="staff-avatar">
             <img src="img/itsronie.png" alt="itsRonie" loading="lazy">
             <div class="staff-status online"></div>
           </div>
-          
           <div class="staff-info">
             <h3 class="staff-name">itsRonie</h3>
-            <div class="staff-role owner-role">
-              <i class="fas fa-crown"></i>
-              Owner
-            </div>
+            <div class="staff-role owner-role"><i class="fas fa-crown"></i> Owner</div>
             <p class="staff-description">
-              Founder and visionary behind MyServer. Passionate about creating 
+              Founder and visionary behind FableMc. Passionate about creating
               the best Minecraft experience for our community.
             </p>
-            
             <div class="staff-social">
-              <a href="#" class="social-link">
-                <i class="fab fa-discord"></i>
-              </a>
-              <a href="#" class="social-link">
-                <i class="fab fa-instagram"></i>
-              </a>
+              <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
             </div>
           </div>
         </div>
-        
+
         <div class="staff-card co-owner" data-aos="zoom-in" data-aos-delay="200">
           <div class="staff-avatar">
             <img src="img/skin2.png" alt="Ashish" loading="lazy">
             <div class="staff-status offline"></div>
           </div>
-          
           <div class="staff-info">
             <h3 class="staff-name">Ashish</h3>
-            <div class="staff-role co-owner-role">
-              <i class="fas fa-star"></i>
-              Co-Owner
-            </div>
+            <div class="staff-role co-owner-role"><i class="fas fa-star"></i> Co-Owner</div>
             <p class="staff-description">
-              Strategic leader focused on server development and community growth. 
+              Strategic leader focused on server development and community growth.
               Always working on new features and improvements.
             </p>
-            
             <div class="staff-social">
-              <a href="#" class="social-link">
-                <i class="fab fa-discord"></i>
-              </a>
+              <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
             </div>
           </div>
         </div>
-        
+
         <div class="staff-card admin" data-aos="zoom-in" data-aos-delay="300">
           <div class="staff-avatar">
             <img src="img/notbadking.png" alt="NotBadKing" loading="lazy">
             <div class="staff-status offline"></div>
           </div>
-          
           <div class="staff-info">
             <h3 class="staff-name">NotBadKing</h3>
-            <div class="staff-role admin-role">
-              <i class="fas fa-shield-alt"></i>
-              Administrator
-            </div>
+            <div class="staff-role admin-role"><i class="fas fa-shield-alt"></i> Administrator</div>
             <p class="staff-description">
-              Experienced administrator ensuring fair play and maintaining 
+              Experienced administrator ensuring fair play and maintaining
               server stability. Expert in conflict resolution.
             </p>
-            
             <div class="staff-social">
-              <a href="#" class="social-link">
-                <i class="fab fa-discord"></i>
-              </a>
+              <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
             </div>
           </div>
         </div>
-        
+
         <div class="staff-card manager" data-aos="zoom-in" data-aos-delay="400">
           <div class="staff-avatar">
             <img src="img/skin1.png" alt="itsAyush" loading="lazy">
             <div class="staff-status offline"></div>
           </div>
-          
           <div class="staff-info">
             <h3 class="staff-name">itsAyush</h3>
-            <div class="staff-role admin-role">
-              <i class="fas fa-shield-alt"></i>
-              Administrator
-            </div>
+            <div class="staff-role admin-role"><i class="fas fa-shield-alt"></i> Administrator</div>
             <p class="staff-description">
-              Community manager dedicated to player support and organizing 
+              Community manager dedicated to player support and organizing
               events. Always ready to help new players get started.
             </p>
-            
             <div class="staff-social">
-              <a href="#" class="social-link">
-                <i class="fab fa-discord"></i>
-              </a>
+              <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
             </div>
           </div>
         </div>
@@ -449,23 +381,18 @@
     <div class="news-background">
       <div class="news-overlay"></div>
     </div>
-    
     <div class="container">
       <div class="news-content">
         <div class="news-badge">
           <i class="fas fa-newspaper"></i>
           <span>Latest News</span>
         </div>
-        
-        <h2 class="news-title">Server Launch UnSuccess!</h2>
-        
+        <h2 class="news-title">Server Launch Incoming!</h2>
         <p class="news-description">
-          We're thrilled to announce that DarkieMc Down Due to hosting issue! 
-          We had over 1,000 players Last Time, Which breaked all our initial expectations. 
-          With new maps, expanded staff team, and enhanced plugins, Now We not ready to provide the ultimate 
-          Minecraft experience.
+          We're preparing for our grand opening. FableMc is being fine-tuned to
+          deliver an unparalleled Minecraft experience. With new maps, an expanded
+          staff team, and enhanced plugins — the Fable is almost ready to be told.
         </p>
-        
         <div class="news-stats">
           <div class="news-stat">
             <div class="stat-number">1,247</div>
@@ -480,10 +407,9 @@
             <div class="stat-label">New Maps</div>
           </div>
         </div>
-        
         <a href="#" class="btn btn-primary">
           <i class="fas fa-arrow-right"></i>
-          Article About Server Soon
+          Article Coming Soon
         </a>
       </div>
     </div>
@@ -494,63 +420,48 @@
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">Get In Touch</h2>
+        <div class="deco-rule"></div>
         <p class="section-subtitle">Have questions? We're here to help!</p>
       </div>
-      
+
       <div class="contact-grid">
         <div class="contact-info">
           <div class="contact-item" data-aos="fade-right" data-aos-delay="100">
-            <div class="contact-icon">
-              <i class="fas fa-envelope"></i>
-            </div>
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
             <div class="contact-details">
               <h3>Email Support</h3>
               <p>Get help with technical issues or general inquiries</p>
-              <a href="mailto:NotWorkPlace@gmail.com" class="contact-link">
-                NotWorkPlace@gmail.com
-              </a>
+              <a href="mailto:support@fablemc.net" class="contact-link">support@fablemc.net</a>
             </div>
           </div>
-          
           <div class="contact-item" data-aos="fade-right" data-aos-delay="200">
-            <div class="contact-icon">
-              <i class="fab fa-discord"></i>
-            </div>
+            <div class="contact-icon"><i class="fab fa-discord"></i></div>
             <div class="contact-details">
               <h3>Discord Community</h3>
               <p>Join our active community for real-time support</p>
-              <a href="#" class="contact-link">
-                DarkieMc
-              </a>
+              <a href="#" class="contact-link">discord.gg/fablemc</a>
             </div>
           </div>
-          
           <div class="contact-item" data-aos="fade-right" data-aos-delay="300">
-            <div class="contact-icon">
-              <i class="fas fa-comments"></i>
-            </div>
+            <div class="contact-icon"><i class="fas fa-comments"></i></div>
             <div class="contact-details">
               <h3>Forums</h3>
               <p>Browse discussions and connect with other players</p>
-              <a href="#" class="contact-link">
-                Soon
-              </a>
+              <a href="#" class="contact-link">Coming Soon</a>
             </div>
           </div>
         </div>
-        
+
         <div class="contact-form-container" data-aos="fade-left">
           <form class="contact-form" id="contact-form">
             <div class="form-group">
               <label for="name">Your Name</label>
-              <input type="text" id="name" name="name" required>
+              <input type="text" id="name" name="name" placeholder="Steve" required>
             </div>
-            
             <div class="form-group">
               <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" required>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required>
             </div>
-            
             <div class="form-group">
               <label for="subject">Subject</label>
               <select id="subject" name="subject" required>
@@ -561,12 +472,10 @@
                 <option value="other">Other</option>
               </select>
             </div>
-            
             <div class="form-group">
               <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
+              <textarea id="message" name="message" rows="5" placeholder="Your message here..." required></textarea>
             </div>
-            
             <button type="submit" class="btn btn-primary">
               <i class="fas fa-paper-plane"></i>
               Send Message
@@ -583,27 +492,20 @@
       <div class="footer-content">
         <div class="footer-section">
           <div class="footer-logo">
-            <img src="img/logo.png" alt="MyServer Logo">
-            <span>DarkieMc</span>
+            <img src="img/logo.png" alt="FableMc Logo">
+            <span>FableMc</span>
           </div>
           <p class="footer-description">
-            The ultimate Minecraft server experience with custom gamemodes, 
+            The ultimate Minecraft server experience with custom gamemodes,
             dedicated staff, and an amazing community.
           </p>
-          
           <div class="social-links">
-            <a href="#" class="social-link">
-              <i class="fab fa-discord"></i>
-            </a>
-            <a href="#" class="social-link">
-              <i class="fab fa-youtube"></i>
-            </a>
-            <a href="#" class="social-link">
-              <i class="fab fa-instagram"></i>
-            </a>
+            <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
-        
+
         <div class="footer-section">
           <h3 class="footer-title">Quick Links</h3>
           <ul class="footer-links">
@@ -614,17 +516,17 @@
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
-        
+
         <div class="footer-section">
           <h3 class="footer-title">Game Modes</h3>
           <ul class="footer-links">
             <li><a href="#">Survival</a></li>
             <li><a href="#">LifeSteal</a></li>
-            <li><a href="#">KitPvP</a></li>
+            <li><a href="#">FFA-PvP</a></li>
             <li><a href="#">Coming Soon</a></li>
           </ul>
         </div>
-        
+
         <div class="footer-section">
           <h3 class="footer-title">Server Info</h3>
           <div class="server-info">
@@ -634,7 +536,7 @@
             </div>
             <div class="server-version">
               <span>Version:</span>
-              <code>1.69.2x</code>
+              <code>1.20.x</code>
             </div>
             <div class="server-status">
               <span class="status-indicator online"></span>
@@ -643,10 +545,10 @@
           </div>
         </div>
       </div>
-      
+
       <div class="footer-bottom">
         <div class="footer-copyright">
-          <p>&copy; 2024 DarkieMc. All rights reserved.</p>
+          <p>&copy; 2024 FableMc. All rights reserved.</p>
         </div>
         <div class="footer-legal">
           <a href="#">Privacy Policy</a>
@@ -657,14 +559,152 @@
     </div>
   </footer>
 
-  <!-- Back to Top Button -->
+  <!-- Back to Top -->
   <button class="back-to-top" id="back-to-top">
     <i class="fas fa-arrow-up"></i>
   </button>
 
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="script.js"></script>
+  <script>
+    /* -------------------------------------------------------
+       PARTICLE ENGINE  (ambient purple dust — from FableHaven)
+       ------------------------------------------------------- */
+    class Particle {
+      constructor(canvas) { this.canvas = canvas; this.reset(true); }
+      reset(rand = false) {
+        const c = this.canvas;
+        if (rand) { this.x = Math.random() * c.width; this.y = Math.random() * c.height; }
+        else {
+          const e = Math.floor(Math.random() * 4);
+          if (e===0) { this.x=Math.random()*c.width; this.y=-12; }
+          else if (e===1) { this.x=c.width+12; this.y=Math.random()*c.height; }
+          else if (e===2) { this.x=Math.random()*c.width; this.y=c.height+12; }
+          else { this.x=-12; this.y=Math.random()*c.height; }
+        }
+        const a = Math.random()*Math.PI*2, s = 0.06+Math.random()*0.18;
+        this.vx=Math.cos(a)*s; this.vy=Math.sin(a)*s;
+        this.radius=0.5+Math.random()*1.6; this.phase=Math.random()*Math.PI*2;
+        this.pulseSpd=0.006+Math.random()*0.01; this.baseAlpha=0.1+Math.random()*0.35;
+        const pal=[[180,80,255],[140,40,220],[100,20,200],[210,120,255]];
+        this.rgb=pal[Math.floor(Math.random()*pal.length)];
+      }
+      update() {
+        this.x+=this.vx; this.y+=this.vy; this.phase+=this.pulseSpd;
+        const p=22,c=this.canvas;
+        if(this.x<-p) this.x=c.width+p;
+        if(this.x>c.width+p) this.x=-p;
+        if(this.y<-p) this.y=c.height+p;
+        if(this.y>c.height+p) this.y=-p;
+      }
+      draw(ctx) {
+        const alpha=this.baseAlpha*(0.5+0.5*Math.sin(this.phase));
+        const [r,g,b]=this.rgb, hr=this.radius*7;
+        const g2=ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,hr);
+        g2.addColorStop(0,`rgba(${r},${g},${b},${alpha*0.65})`);
+        g2.addColorStop(0.4,`rgba(${r},${g},${b},${alpha*0.18})`);
+        g2.addColorStop(1,`rgba(${r},${g},${b},0)`);
+        ctx.beginPath(); ctx.arc(this.x,this.y,hr,0,Math.PI*2);
+        ctx.fillStyle=g2; ctx.fill();
+        ctx.beginPath(); ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
+        ctx.fillStyle=`rgba(${r},${g},${b},${Math.min(1,alpha*2)})`; ctx.fill();
+      }
+    }
+
+    (function initParticles() {
+      const canvas = document.getElementById('particleCanvas');
+      const ctx = canvas.getContext('2d');
+      const count = 110;
+      let particles = [];
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        particles.forEach(p => p.reset(true));
+      }
+      function init() {
+        particles = Array.from({length:count}, ()=>new Particle(canvas));
+      }
+      function loop() {
+        ctx.fillStyle='rgba(3,0,14,0.14)';
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        particles.forEach(p=>{ p.update(); p.draw(ctx); });
+        requestAnimationFrame(loop);
+      }
+      resize();
+      init();
+      loop();
+      window.addEventListener('resize', resize);
+    })();
+
+    /* -------------------------------------------------------
+       NAVBAR — scroll shrink
+       ------------------------------------------------------- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* -------------------------------------------------------
+       HAMBURGER
+       ------------------------------------------------------- */
+    const hamburger = document.getElementById('hamburger');
+    const navMenu   = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+    navMenu.querySelectorAll('.nav-link').forEach(l => {
+      l.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+
+    /* -------------------------------------------------------
+       COUNTER ANIMATION
+       ------------------------------------------------------- */
+    function animateCounters() {
+      document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+        const target = +el.getAttribute('data-target');
+        if (target === 0) return;
+        let start = 0;
+        const step = target / 50;
+        const t = setInterval(() => {
+          start = Math.min(target, start + step);
+          el.textContent = Math.floor(start);
+          if (start >= target) clearInterval(t);
+        }, 30);
+      });
+    }
+    const heroObserver = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { animateCounters(); heroObserver.disconnect(); }
+    }, { threshold: 0.4 });
+    heroObserver.observe(document.querySelector('.hero-stats'));
+
+    /* -------------------------------------------------------
+       COPY IP
+       ------------------------------------------------------- */
+    document.getElementById('copy-ip')?.addEventListener('click', () => {
+      const ip = document.getElementById('server-ip').textContent;
+      navigator.clipboard.writeText(ip).then(() => {
+        const btn = document.getElementById('copy-ip');
+        btn.innerHTML = '<i class="fas fa-check"></i>';
+        setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i>', 1500);
+      });
+    });
+
+    /* -------------------------------------------------------
+       BACK TO TOP
+       ------------------------------------------------------- */
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 400));
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* -------------------------------------------------------
+       AOS INIT
+       ------------------------------------------------------- */
+    AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 80 });
+  </script>
 </body>
 </html>
-
