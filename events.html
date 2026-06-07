@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FableMC Regions & Events</title>
+    <style>
+        /* Gaming Dark Theme CSS */
+        body {
+            background-color: #0d0d12;
+            color: #d1d1e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .fablemc-events {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .main-title {
+            font-size: 2.8rem;
+            color: #ffffff;
+            margin-bottom: 50px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .event-card {
+            background: #16161e;
+            border: 1px solid #2a2a35;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: left;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffaa00;
+            box-shadow: 0 8px 25px rgba(255, 170, 0, 0.15);
+        }
+
+        .event-card h3 {
+            font-size: 1.4rem;
+            color: #ffaa00;
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #2a2a35;
+        }
+
+        .event-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .event-list li {
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .event-list li::before {
+            content: "▹";
+            color: #555570;
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .rewards {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #2a2a35;
+            color: #55ff55;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .note {
+            font-size: 0.85rem;
+            color: #aaaaaa;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .footer-note {
+            margin-top: 60px;
+            font-size: 1.3rem;
+            color: #ff55ff;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; text-shadow: 0 0 10px rgba(255, 85, 255, 0.4); }
+            100% { opacity: 0.8; }
+        }
+
+        /* Tracker Buttons CSS */
+        .card-tracker {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #2a2a35;
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .t-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            background: #333344;
+            transition: 0.2s;
+        }
+
+        .t-pending { color: #ffaa00; }
+        .t-done { color: #55ff55; }
+        .t-cross { color: #ff5555; }
+
+        .t-btn:hover { filter: brightness(1.2); }
+
+        .t-btn.active-pending { background: #ffaa00; color: #000; }
+        .t-btn.active-done { background: #55ff55; color: #000; }
+        .t-btn.active-cross { background: #ff5555; color: #fff; }
+
+    </style>
+</head>
+<body>
+
+    <section class="fablemc-events">
+        <h2 class="main-title">🎄 FableMC Custom Regions & Events</h2>
+        
+        <div class="events-grid">
+            
+            <div class="event-card" data-id="frostpeak">
+                <h3>❄️ Frostpeak Kingdom</h3>
+                <ul class="event-list">
+                    <li>Snow Golem Invasion</li>
+                    <li>Ice Titan Boss</li>
+                    <li>Gift Hunt Event</li>
+                    <li>Frozen Dungeon (Every 2 Hours)</li>
+                </ul>
+                <div class="rewards">Rewards: Frost Armor, Ice Blade, Snow Pet, Winter Cosmetics</div>
+                
+                <div class="card-tracker">
+                    <button class="t-btn t-pending" onclick="setCardStatus('frostpeak', 'pending')">⏳</button>
+                    <button class="t-btn t-done" onclick="setCardStatus('frostpeak', 'done')">✅</button>
+                    <button class="t-btn t-cross" onclick="setCardStatus('frostpeak', 'cross')">❌</button>
+                </div>
+            </div>
+
+            <div class="event-card" data-id="shadow_realm">
+                <h3>🌑 Shadow Realm</h3>
+                <ul class="event-list">
+                    <li>Shadow Mobs</li>
+                    <li>Soul Collection</li>
+                    <li>Shadow Dungeon</li>
+                </ul>
+                <div class="rewards">Rewards: Shadow Coins, Dark Enchants, Shadow Mount</div>
+
+                <div class="card-tracker">
+                    <button class="t-btn t-pending" onclick="setCardStatus('shadow_realm', 'pending')">⏳</button>
+                    <button class="t-btn t-done" onclick="setCardStatus('shadow_realm', 'done')">✅</button>
+                    <button class="t-btn t-cross" onclick="setCardStatus('shadow_realm', 'cross')">❌</button>
+                </div>
+            </div>
+
+            <div class="event-card" data-id="dragon_isles">
+                <h3>🐉 Dragon Isles</h3>
+                <ul class="event-list">
+                    <li>Dragon Hunting</li>
+                    <li>Dragon Eggs</li>
+                    <li>Ancient Dragon Boss</li>
+                </ul>
+                <div class="rewards">Rewards: Dragon Armor, Dragon Pet, Dragon Wings</div>
+
+                <div class="card-tracker">
+                    <button class="t-btn t-pending" onclick="setCardStatus('dragon_isles', 'pending')">⏳</button>
+                    <button class="t-btn t-done" onclick="setCardStatus('dragon_isles', 'done')">✅</button>
+                    <button class="t-btn t-cross" onclick="setCardStatus('dragon_isles', 'cross')">❌</button>
+                </div>
+            </div>
+
+            <div class="event-card" data-id="infernal_wastes">
+                <h3>🌋 Infernal Wastes</h3>
+                <ul class="event-list">
+                    <li>Nether King</li>
+                    <li>Lava Colossus</li>
+                    <li>Infernal Beast</li>
+                </ul>
+                <div class="rewards">Rewards: Infernal Armor, Flame Enchants, Fire Mounts</div>
+
+                <div class="card-tracker">
+                    <button class="t-btn t-pending" onclick="setCardStatus('infernal_wastes', 'pending')">⏳</button>
+                    <button class="t-btn t-done" onclick="setCardStatus('infernal_wastes', 'done')">✅</button>
+                    <button class="t-btn t-cross" onclick="setCardStatus('infernal_wastes', 'cross')">❌</button>
+                </div>
+            </div>
+
+            <div class="event-card" data-id="sky_temple">
+                <h3>⚡ Sky Temple</h3>
+                <ul class="event-list">
+                    <li>Lightning Storm</li>
+                    <li>Sky Dungeon</li>
+                    <li>Storm Titan</li>
+                </ul>
+                <div class="rewards">Rewards: Thunder Hammer, Lightning Enchants, Storm Pet</div>
+
+                <div class="card-tracker">
+                    <button class="t-btn t-pending" onclick="setCardStatus('sky_temple', 'pending')">⏳</button>
+                    <button class="t-btn t-done" onclick="setCardStatus('sky_temple', 'done')">✅</button>
+                    <button class="t-btn t-cross" onclick="setCardStatus('sky_temple', 'cross')">❌</button>
+                </div>
+            </div>
+
+            <div class="event-card" data-id="seasonal_events">
+                <h3>🎃 Seasonal Events</h3>
+                <ul class="event-list">
+                    <li>🎃 Halloween</li>
+                    <li>🎄 Christmas</li>
+                    <li>🐰 Easter</li>
+                    <li>☀️ Summer Festival</li>
+                </ul>
+
+                <div class="card-tracker">
+                    <button class="t-btn t-pending" onclick="setCardStatus('seasonal_events', 'pending')">⏳</button>
+                    <button class="t-btn t-done" onclick="setCardStatus('seasonal_events', 'done')">✅</button>
+                    <button class="t-btn t-cross" onclick="setCardStatus('seasonal_events', 'cross')">❌</button>
+                </div>
+            </div>
+
+            <div class="event-card" data-id="merchants">
+                <h3>🎪 Traveling Merchants</h3>
+                <ul class="event-list">
+                    <li>🧙 Wandering Wizard</li>
+                    <li>🎭 Mysterious Trader</li>
+                    <li>🏴 Black Market Dealer</li>
+                    <li>🎅 Santa Merchant</li>
+                </ul>
+                <div class="note">(Spawns every 4–6 hours with exclusive items.)</div>
+
+                <div class="card-tracker">
+                    <button class="t-btn t-pending" onclick="setCardStatus('merchants', 'pending')">⏳</button>
+                    <button class="t-btn t-done" onclick="setCardStatus('merchants', 'done')">✅</button>
+                    <button class="t-btn t-cross" onclick="setCardStatus('merchants', 'cross')">❌</button>
+                </div>
+            </div>
+
+            <div class="event-card" data-id="world_events">
+                <h3>🌍 World Events</h3>
+                <ul class="event-list">
+                    <li>🐉 Ancient Dragon Awakens</li>
+                    <li>❄️ Frostpeak Dungeon Opens</li>
+                    <li>🔥 Nether Invasion</li>
+                    <li>⚡ Storm Titan Spawn</li>
+                </ul>
+
+                <div class="card-tracker">
+                    <button class="t-btn t-pending" onclick="setCardStatus('world_events', 'pending')">⏳</button>
+                    <button class="t-btn t-done" onclick="setCardStatus('world_events', 'done')">✅</button>
+                    <button class="t-btn t-cross" onclick="setCardStatus('world_events', 'cross')">❌</button>
+                </div>
+            </div>
+
+            <div class="event-card" data-id="special_events">
+                <h3>💎 Special Events</h3>
+                <ul class="event-list">
+                    <li>📚 Fable Hunt</li>
+                    <li>👑 Kingdom Siege</li>
+                    <li>🏰 Castle Defense</li>
+                    <li>⚔️ Dungeon Rush</li>
+                    <li>💰 Gold Fever</li>
+                    <li>🎣 Fishing Frenzy</li>
+                </ul>
+
+                <div class="card-tracker">
+                    <button class="t-btn t-pending" onclick="setCardStatus('special_events', 'pending')">⏳</button>
+                    <button class="t-btn t-done" onclick="setCardStatus('special_events', 'done')">✅</button>
+                    <button class="t-btn t-cross" onclick="setCardStatus('special_events', 'cross')">❌</button>
+                </div>
+            </div>
+
+        </div>
+
+        <p class="footer-note">✨ New events, bosses, and dungeons keep the world alive and constantly changing.</p>
+    </section>
+
+    <script>
+        // Har card ke tracker ka logic
+        function renderCardTrackers() {
+            document.querySelectorAll('.event-card').forEach(card => {
+                const id = card.getAttribute('data-id');
+                // Check localStorage, default 'pending'
+                const status = localStorage.getItem(`fablemc_section_${id}`) || 'pending';
+                
+                // Clear active classes
+                card.querySelectorAll('.t-btn').forEach(btn => {
+                    btn.classList.remove('active-pending', 'active-done', 'active-cross');
+                });
+                
+                // Add active class based on saved status
+                if(status === 'pending') card.querySelector('.t-pending').classList.add('active-pending');
+                if(status === 'done') card.querySelector('.t-done').classList.add('active-done');
+                if(status === 'cross') card.querySelector('.t-cross').classList.add('active-cross');
+            });
+        }
+
+        // Jab user button click kare
+        function setCardStatus(id, status) {
+            localStorage.setItem(`fablemc_section_${id}`, status);
+            renderCardTrackers(); // UI update
+        }
+
+        // Page load hone par trackers run karein
+        renderCardTrackers();
+    </script>
+
+</body>
+</html>
