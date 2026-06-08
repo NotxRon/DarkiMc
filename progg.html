@@ -1,127 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FableMC - Dev Dashboard</title>
-    <style>
-        body {
-            background-color: #0d0d12;
-            color: #d1d1e0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            display: flex;
-            height: 100vh;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FableMC Dungeons & Dev Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --bg-body: #0a0b10;
+        --bg-card: #14161f;
+        --bg-header: rgba(16, 18, 26, 0.95);
+        
+        /* Accent Colors - Fantasy Theme */
+        --primary-glow: #9b59b6; /* Magic Purple */
+        --accent-gold: #f1c40f;
+        --text-main: #e0e6ed;
+        --text-muted: #8899a6;
+        
+        /* Status Colors */
+        --color-pending: #3498db; /* Bright Blue */
+        --color-done: #2ecc71;    /* Bright Green */
+        --color-cancel: #e74c3c;  /* Bright Red */
+        
+        --font-rpg: 'Cinzel', serif;
+        --font-main: 'Poppins', sans-serif;
+        
+        --transition: all 0.3s ease;
+    }
 
-        /* Sidebar Navigation */
-        .sidebar {
-            width: 250px;
-            background: #16161e;
-            padding: 20px;
-            border-right: 1px solid #2a2a35;
-            overflow-y: auto;
-        }
+    body {
+        font-family: var(--font-main);
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36z8gAFWNgYGBkQBdA5Rhghv5HAC4/CX0j8N9RAAAAAElFTkSuQmCC');
+        display: flex;
+        flex-direction: column;
+    }
 
-        .sidebar h2 {
-            color: #ffaa00;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #2a2a35;
-            padding-bottom: 10px;
-        }
+    /* --- Custom Scrollbar --- */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-body); }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--primary-glow); }
 
-        .nav-links a {
-            display: block;
-            color: #d1d1e0;
-            text-decoration: none;
-            padding: 12px 15px;
-            margin-bottom: 8px;
-            background: #1e1e28;
-            border-radius: 6px;
-            transition: 0.2s;
-        }
+    /* --- Header & Nav --- */
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        background-color: var(--bg-header);
+        border-bottom: 2px solid #222;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    }
 
-        .nav-links a:hover {
-            background: #ffaa00;
-            color: #000;
-            transform: translateX(5px);
-        }
+    .nav-btn {
+        padding: 10px 20px;
+        background: linear-gradient(145deg, #1e212d, #14161f);
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        font-size: 14px;
+        font-family: var(--font-main);
+        transition: var(--transition);
+        border: 1px solid #333;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
 
-        /* Main Tracker Area */
-        .main-content {
-            flex: 1;
-            padding: 40px;
-            overflow-y: auto;
-        }
+    .nav-btn:hover {
+        border-color: var(--primary-glow);
+        box-shadow: 0 0 10px rgba(155, 89, 182, 0.5);
+        transform: translateY(-2px);
+    }
 
-        h1 { color: #fff; }
+    header h1 {
+        margin: 0;
+        font-family: var(--font-rpg);
+        font-size: 26px;
+        color: #fff;
+        text-shadow: 0 0 10px var(--primary-glow), 0 0 20px var(--primary-glow);
+        letter-spacing: 2px;
+    }
 
-        .tracker-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background: #16161e;
-            border-radius: 8px;
-            overflow: hidden;
-        }
+    /* --- Main Container --- */
+    .wrapper {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 20px;
+        padding-bottom: 60px;
+        width: calc(100% - 40px);
+    }
 
-        .tracker-table th, .tracker-table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #2a2a35;
-        }
+    /* --- Tracker Sections --- */
+    .section {
+        background-color: var(--bg-card);
+        margin-bottom: 25px;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #222;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .section:hover {
+        border-color: rgba(155, 89, 182, 0.3);
+        box-shadow: 0 10px 40px rgba(155, 89, 182, 0.15);
+    }
 
-        .tracker-table th {
-            background: #1e1e28;
-            color: #ffaa00;
-        }
+    .section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--primary-glow), transparent);
+    }
 
-        /* Tracker Buttons */
-        .btn {
-            padding: 8px 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-right: 5px;
-            transition: 0.2s;
-        }
+    .section h2 {
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-family: var(--font-rpg);
+        font-size: 22px;
+        color: var(--accent-gold);
+        border-bottom: 1px solid #333;
+        padding-bottom: 10px;
+        letter-spacing: 1px;
+    }
 
-        .btn-pending { background: #333344; color: #ffaa00; }
-        .btn-done { background: #333344; color: #55ff55; }
-        .btn-cross { background: #333344; color: #ff5555; }
+    /* --- List Items --- */
+    .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        border-bottom: 1px solid #1e1e1e;
+        transition: var(--transition);
+        border-radius: 8px;
+    }
+    
+    .item:hover {
+        background-color: rgba(255,255,255,0.03);
+    }
 
-        .btn.active-pending { background: #ffaa00; color: #000; }
-        .btn.active-done { background: #55ff55; color: #000; }
-        .btn.active-cross { background: #ff5555; color: #fff; }
+    .item:last-child { border-bottom: none; }
 
-        .status-text { font-weight: bold; }
-    </style>
+    .item-name {
+        font-size: 16px;
+        font-weight: 400;
+        color: var(--text-main);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .item-name small {
+        color: var(--text-muted);
+        font-size: 12px;
+        margin-left: 10px;
+    }
+
+    /* --- Buttons --- */
+    .status-container {
+        display: flex;
+        gap: 5px;
+    }
+
+    .status-btn, .btn {
+        padding: 6px 12px;
+        border-radius: 4px;
+        border: 1px solid #333;
+        background-color: #1a1a1a;
+        color: var(--text-muted);
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        transition: var(--transition);
+        font-family: var(--font-main);
+    }
+
+    .status-btn:hover, .btn:hover {
+        background-color: #252525;
+        color: #fff;
+    }
+
+    /* Active States */
+    .item[data-status="pending"] .btn-pending {
+        background-color: rgba(52, 152, 219, 0.15);
+        color: var(--color-pending);
+        border-color: var(--color-pending);
+        box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+    }
+
+    .item[data-status="done"] .btn-done {
+        background-color: rgba(46, 204, 113, 0.15);
+        color: var(--color-done);
+        border-color: var(--color-done);
+        box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+    }
+    
+    .item[data-status="done"] .item-name {
+        text-decoration: line-through;
+        color: var(--text-muted);
+    }
+
+    .item[data-status="cancel"] .btn-cancel {
+        background-color: rgba(231, 76, 60, 0.15);
+        color: var(--color-cancel);
+        border-color: var(--color-cancel);
+        box-shadow: 0 0 10px rgba(231, 76, 60, 0.3);
+    }
+
+    /* --- Table Design for Dev Progress --- */
+    .tracker-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background: #14161f;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .tracker-table th, .tracker-table td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #2a2a35;
+    }
+
+    .tracker-table th {
+        background: #1e1e28;
+        color: var(--accent-gold);
+        font-family: var(--font-rpg);
+        letter-spacing: 1px;
+    }
+
+    .status-text { font-weight: bold; }
+
+    .btn-pending { color: #ffaa00; }
+    .btn-done { color: #55ff55; }
+    .btn-cross { color: #ff5555; }
+
+    .btn.active-pending { background: #ffaa00; color: #000; border-color: #ffaa00; }
+    .btn.active-done { background: #55ff55; color: #000; border-color: #55ff55; }
+    .btn.active-cross { background: #ff5555; color: #fff; border-color: #ff5555; }
+
+    /* --- Rules Section --- */
+    .rules-section {
+        background: linear-gradient(145deg, #1a0b0b, #110505);
+        border: 1px solid #421;
+        margin-top: 50px;
+    }
+    
+    .rules-section h2 {
+        color: var(--color-cancel);
+        text-shadow: 0 0 10px var(--color-cancel);
+    }
+    
+    .rule-item {
+        color: var(--text-muted);
+        font-size: 14px;
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    @media (max-width: 600px) {
+        header h1 { font-size: 18px; }
+        .nav-btn { padding: 8px 12px; font-size: 12px; }
+        .item { flex-direction: column; align-items: flex-start; gap: 10px; }
+        .status-container { width: 100%; justify-content: flex-start; }
+        .status-btn { flex: 1; text-align: center; }
+    }
+</style>
 </head>
 <body>
 
-    <div class="sidebar">
-        <h2>🛠️ FableMC Menu</h2>
-        <div class="nav-links">
-            <a href="home.html">🏠 Home</a>
-            <a href="classes.html">⚔️ Classes</a>
-            <a href="kingdoms.html">👑 Kingdoms</a>
-            <a href="dungeons.html">🏛️ Dungeons</a>
-            <a href="events.html">🎄 Regions & Events</a>
-            <a href="bosses.html">🐉 Bosses</a>
-            <a href="economy.html">💰 Economy</a>
-            <a href="quests.html">📜 Quests</a>
-            <a href="store.html">🛒 Store</a>
-            <a href="rules.html">⚖️ Rules</a>
-            <a href="events.html"> 🌃 events </a>
-        </div>
+<header>
+    <a href="progg.html" class="nav-btn">⬅ Back</a>
+    <h1>FABLEMC TRACKER HUB</h1>
+    <a href="index.html" class="nav-btn">Home 🏰</a>
+</header>
+
+<div class="wrapper" id="main-content">
+    <div class="section rules-section">
+        <h2>🚫 Dungeon Gear Rules</h2>
+        <div class="rule-item">✅ Can be carried anywhere</div>
+        <div class="rule-item">❌ Dungeon abilities only work inside dungeons</div>
+        <div class="rule-item">❌ Special dungeon damage is disabled in the overworld</div>
+        <div class="rule-item">❌ Dungeon armor bonuses only work inside dungeons</div>
     </div>
 
-    <div class="main-content">
-        <h1>Dev Progress Tracker</h1>
-        <p>Yahan apne pages ka status track karo. Data local browser me save rahega.</p>
-
+    <div class="section" style="margin-top: 40px;">
+        <h2>🛠️ Dev Progress Tracker</h2>
+        <p style="color: var(--text-muted); font-size: 14px;">Yahan apne pages ka status track karo. Data local browser me save rahega.</p>
         <table class="tracker-table">
             <thead>
                 <tr>
@@ -130,61 +314,142 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="tracker-body">
-                </tbody>
+            <tbody id="tracker-body"></tbody>
         </table>
     </div>
+</div>
 
-    <script>
-        // Pages List
-        const pages = [
-            { id: 'home', name: '🏠 Home (home.html)' },
-            { id: 'classes', name: '⚔️ Classes (classes.html)' },
-            { id: 'kingdoms', name: '👑 Kingdoms (kingdoms.html)' },
-            { id: 'dungeons', name: '🏛️ Dungeons (dungeons.html)' },
-            { id: 'events', name: '🎄 Regions & Events (events.html)' },
-            { id: 'bosses', name: '🐉 Bosses (bosses.html)' },
-            { id: 'economy', name: '💰 Economy (economy.html)' },
-            { id: 'quests', name: '📜 Quests (quests.html)' },
-            { id: 'store', name: '🛒 Store (store.html)' },
-            { id: 'rules', name: '⚖️ Rules (rules.html)' }
-        ];
-
-        const tbody = document.getElementById('tracker-body');
-
-        // Load tracker UI
-        function renderTracker() {
-            tbody.innerHTML = '';
-            pages.forEach(page => {
-                // Get saved status or default to pending
-                const status = localStorage.getItem(`fablemc_${page.id}`) || 'pending';
-                
-                let statusIcon = status === 'done' ? '✅ Done' : status === 'cross' ? '❌ Dropped' : '⏳ Pending';
-                let statusColor = status === 'done' ? '#55ff55' : status === 'cross' ? '#ff5555' : '#ffaa00';
-
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${page.name}</td>
-                    <td class="status-text" style="color: ${statusColor}">${statusIcon}</td>
-                    <td>
-                        <button class="btn btn-pending ${status === 'pending' ? 'active-pending' : ''}" onclick="setStatus('${page.id}', 'pending')">⏳</button>
-                        <button class="btn btn-done ${status === 'done' ? 'active-done' : ''}" onclick="setStatus('${page.id}', 'done')">✅</button>
-                        <button class="btn btn-cross ${status === 'cross' ? 'active-cross' : ''}" onclick="setStatus('${page.id}', 'cross')">❌</button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
+<script>
+    // --- Friend's Dungeon Database ---
+    const dungeonDb = [
+        {
+            category: "⚔️ Dungeon Classes",
+            items: ["Warrior (Tank)", "Archer (Ranged DPS)", "Mage (Magic DPS)", "Assassin (Burst DPS)", "Healer (Support)"]
+        },
+        {
+            category: "🏛️ Dungeon Floors",
+            items: ["Floor I — Forgotten Crypt", "Floor II — Spider Nest 🕷️", "Floor III — Frozen Depths ❄️", "Floor IV — Infernal Fortress 🔥", "Floor V — Dragon Sanctum 🐉"]
+        },
+        {
+            category: "👑 Dungeon Bosses",
+            items: ["Ice Titan ❄️", "Nether King 🔥", "Shadow Reaper 🌑", "Storm Titan ⚡", "Ancient Dragon 🐉"]
+        },
+        {
+            category: "🎖️ Item Rarities (Collect 'em all)",
+            items: ["Common ⚪", "Rare 🔵", "Epic 🟣", "Legendary 🟠", "Mythic 🔴", "Divine ✨"]
+        },
+        {
+            category: "🛡️ Dungeon Armor Sets",
+            items: [
+                "Guardian Armor <small>(Warrior)</small>", "Titan Armor <small>(Warrior)</small>", "Dragon Knight Armor <small>(Warrior)</small>",
+                "Arcane Armor <small>(Mage)</small>", "Frost Mage Armor <small>(Mage)</small>", "Celestial Armor <small>(Mage)</small>",
+                "Ranger Armor <small>(Archer)</small>", "Shadow Hunter Armor <small>(Archer)</small>",
+                "Nightblade Armor <small>(Assassin)</small>", "Void Assassin Armor <small>(Assassin)</small>",
+                "Holy Armor <small>(Healer)</small>", "Angelic Armor <small>(Healer)</small>"
+            ]
+        },
+        {
+            category: "⚔️ Iconic Weapons",
+            items: ["Dragon Slayer", "Ice Blade", "Shadow Dagger", "Infernal Axe", "Arcane Staff", "Thunder Hammer"]
+        },
+        {
+            category: "💎 Legendary Artifacts",
+            items: ["Dragon Heart", "Frozen Crystal", "Shadow Relic", "Titan Core", "Phoenix Feather"]
         }
+    ];
 
-        // Save status to LocalStorage and update UI
-        function setStatus(id, status) {
-            localStorage.setItem(`fablemc_${id}`, status);
-            renderTracker();
-        }
+    // --- Your Original Pages Database ---
+    const pages = [
+        { id: 'home', name: '🏠 Home (home.html)' },
+        { id: 'classes', name: '⚔️ Classes (classes.html)' },
+        { id: 'kingdoms', name: '👑 Kingdoms (kingdoms.html)' },
+        { id: 'dungeons', name: '🏛️ Dungeons (dungeons.html)' },
+        { id: 'events', name: '🎄 Regions & Events (events.html)' },
+        { id: 'bosses', name: '🐉 Bosses (bosses.html)' },
+        { id: 'economy', name: '💰 Economy (economy.html)' },
+        { id: 'quests', name: '📜 Quests (quests.html)' },
+        { id: 'store', name: '🛒 Store (store.html)' },
+        { id: 'rules', name: '⚖️ Rules (rules.html)' }
+    ];
 
-        // Initial Load
-        renderTracker();
-    </script>
+    const mainContent = document.getElementById('main-content');
+    const DUNGEON_STORAGE_KEY = 'fablemc_dungeon_tracker_v2';
+
+    let dungeonProgress = JSON.parse(localStorage.getItem(DUNGEON_STORAGE_KEY)) || {};
+
+    // Build Dungeon UI
+    dungeonDb.forEach(section => {
+        const sectionEl = document.createElement('div');
+        sectionEl.className = 'section';
+
+        const title = document.createElement('h2');
+        title.textContent = section.category;
+        sectionEl.appendChild(title);
+
+        section.items.forEach(itemNameRaw => {
+            const div = document.createElement('div');
+            div.innerHTML = itemNameRaw;
+            const itemNameClean = div.textContent || div.innerText || itemNameRaw;
+            const itemId = itemNameClean.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+            
+            const currentStatus = dungeonProgress[itemId] || 'pending';
+
+            const itemEl = document.createElement('div');
+            itemEl.className = 'item';
+            itemEl.setAttribute('data-id', itemId);
+            itemEl.setAttribute('data-status', currentStatus);
+
+            itemEl.innerHTML = `
+                <span class="item-name">${itemNameRaw}</span>
+                <div class="status-container">
+                    <button class="status-btn btn-pending" onclick="setDungeonStatus('${itemId}', 'pending')">Pending</button>
+                    <button class="status-btn btn-done" onclick="setDungeonStatus('${itemId}', 'done')">Done</button>
+                    <button class="status-btn btn-cancel" onclick="setStatus('${itemId}', 'cancel')">Skip</button>
+                </div>
+            `;
+            sectionEl.appendChild(itemEl);
+        });
+        mainContent.insertBefore(sectionEl, document.querySelector('.rules-section'));
+    });
+
+    window.setDungeonStatus = (itemId, newStatus) => {
+        dungeonProgress[itemId] = newStatus;
+        localStorage.setItem(DUNGEON_STORAGE_KEY, JSON.stringify(dungeonProgress));
+        const itemRow = document.querySelector(`[data-id="${itemId}"]`);
+        if (itemRow) itemRow.setAttribute('data-status', newStatus);
+    };
+
+    // --- Original Dev Progress Tracker Logic ---
+    const tbody = document.getElementById('tracker-body');
+
+    function renderDevTracker() {
+        tbody.innerHTML = '';
+        pages.forEach(page => {
+            const status = localStorage.getItem(`fablemc_${page.id}`) || 'pending';
+            let statusIcon = status === 'done' ? '✅ Done' : status === 'cross' ? '❌ Dropped' : '⏳ Pending';
+            let statusColor = status === 'done' ? '#55ff55' : status === 'cross' ? '#ff5555' : '#ffaa00';
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${page.name}</td>
+                <td class="status-text" style="color: ${statusColor}">${statusIcon}</td>
+                <td>
+                    <button class="btn btn-pending ${status === 'pending' ? 'active-pending' : ''}" onclick="setDevStatus('${page.id}', 'pending')">⏳</button>
+                    <button class="btn btn-done ${status === 'done' ? 'active-done' : ''}" onclick="setDevStatus('${page.id}', 'done')">✅</button>
+                    <button class="btn btn-cross ${status === 'cross' ? 'active-cross' : ''}" onclick="setDevStatus('${page.id}', 'cross')">❌</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    window.setDevStatus = (id, status) => {
+        localStorage.setItem(`fablemc_${id}`, status);
+        renderDevTracker();
+    }
+
+    renderDevTracker();
+</script>
 
 </body>
 </html>
